@@ -1,5 +1,5 @@
--- author = Christian Ouwehand 
--- January 2015
+-- Skeleton author = Christian Ouwehand January 2015
+-- Completed by Daniela Mackay 2021
 
 module Main where
 
