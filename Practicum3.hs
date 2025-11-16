@@ -1,16 +1,5 @@
 module Practicum3 where
 
-{-    
-Name:           <Daniela Mackay>
-VU-net id:      <dmt380>
-Student number: <2663452>
-Discussed with: 
-Remarks:        
-Sources:        
--}
-
-
-
 -- Exercises Arithmetical Expression
 
 data IntExp  = Lit Int | Add IntExp IntExp | Mul IntExp IntExp

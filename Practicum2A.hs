@@ -6,7 +6,7 @@ Name:           <Daniela Mackay>
 VU-net id:      <dmt380>
 Student number: <2663452>
 Discussed with: 
-Remarks:       This is the same that I handed in last year. 
+Remarks:        I haven't been able to finish. I thought I would hand in what I have to show that I am still participating and hope to be able to tak the resit of the assignments.
 Sources:        
 -}
 
@@ -51,7 +51,7 @@ allelementsexceptnfolds n l = filter (\x -> mod x n/=0) l
 eratosthenes :: [Integer]
 eratosthenes = primes [2..]
                where
-               primes (x:xs) = x : primes (allelementsexceptnfolds x xs)
+               primes (x:xs) = x : (allelementsexceptnfolds x xs)
 
 -- Exercise 9
 fibonacci :: [Integer]
@@ -100,9 +100,9 @@ successorb x s z = x s (s z)
 
 -- Exercise 5  
 apply1 :: (Eq a, Num a) => (ChurchNumeral-> ChurchNumeral) ->  a -> a
-apply1 f n =  backtointeger (f (churchnumeral n)) 
+apply1 f n =  backtointeger ( f ( churchnumeral n ) ) 
 
--- Exercise 6  
+-- Exercise 6                                                         -----------------------------------------------------------
 addition :: ChurchNumeral -> ChurchNumeral -> ChurchNumeral
 addition x y s z  = x s (y s z)
 
@@ -112,9 +112,9 @@ multiplication x y s  = x (y s)
 exponentiation ::  ChurchNumeral -> ChurchNumeral -> ChurchNumeral 
 exponentiation x y  = y x 
 
--- Exercise 7 
+-- Exercise 7                                                          ----------------------------------------------------------
 apply2 :: (Eq a, Num a) => (ChurchNumeral -> ChurchNumeral -> ChurchNumeral) -> a -> a -> a
-apply2 f m n  = backtointeger (f (churchnumeral m) (churchnumeral n))
+apply2 f m n  = undefined
 
 
 -- ---------------------
@@ -186,33 +186,26 @@ insert n (Node left x right) | (iselement n (Node left x right)) = Node left x r
                              | (n > x) = Node left x (insert n right)
                              | (n < x) = Node (insert n left) x right
 
+
 -- Exercise 5
 createbinarysearchtree :: (Ord a, Eq a) => [a] -> BinaryTree a
 createbinarysearchtree (x:xs) |(length xs == 0) = insert x Leaf
                               |(length xs >  0) = insert x (createbinarysearchtree xs)
 
--- Exercise 6     
+-- Exercise 6                                                                                     ----------------------------------
 remove :: (Ord a, Eq a) => a -> BinaryTree a -> BinaryTree a
 remove n Leaf = Leaf
 remove n (Node left x right)  | ((iselement n (Node left x right)) == False) = Node left x right
                               | (n == x) = removeroot (Node left x right)
-                              | (n < x) = Node (remove n left) x right
-                              | (n > x) = Node left x (remove n right)
+                              | (n < x) = remove n left
+                              | (n > x) = remove n right
+
 
 removeroot :: (Ord a, Eq a) => BinaryTree a -> BinaryTree a
 removeroot Leaf = Leaf
 removeroot (Node left x right)  | (left == Leaf && right == Leaf) = Leaf
-                                | (left == Leaf && right /= Leaf)  
-                                || (left /= Leaf && right /= Leaf) = Node left (leftmost right) (remove (leftmost right) right) 
-                                | (left /= Leaf && right == Leaf) = Node (remove (rightmost left) left) (rightmost left) right
+                                | (left == Leaf && right /= Leaf) = Leaf
 
-leftmost :: (Ord a, Eq a) => BinaryTree a -> a
-leftmost (Node left x right)  | (left == Leaf) = x
-                              | (left /= Leaf) = leftmost left
-
-rightmost :: (Ord a, Eq a) => BinaryTree a -> a
-rightmost (Node left x right) | (right == Leaf) = x
-                              | (right /= Leaf) = rightmost right
 
 ----------------------------
 -- Exercise Tower of Hanoi                                                                         
@@ -227,4 +220,5 @@ hanoi n a b c |(n == 0) = []
 
 {-
 The smallest disk is numbered as 1 and then as numbers increase so does the size.
+
 -}

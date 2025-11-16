@@ -1,14 +1,4 @@
 module Practicum2B where
-
-{-    
-Name:           <Daniela Mackay>
-VU-net id:      <dmt380>
-Student number: <2663452>
-Discussed with: 
-Remarks:       This is the same that I handed in last year. 
-Sources:        
--}
-
 import Control.Applicative (Applicative(..))
 import Control.Monad       (liftM, ap)
 
