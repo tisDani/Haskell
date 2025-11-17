@@ -3,7 +3,7 @@ import Control.Applicative (Applicative(..))
 import Control.Monad       (liftM, ap)
 
 
--- given: definition of the monad MaybeOne used for partial functions
+-- Definition of the monad MaybeOne used for partial functions
 data MaybeOne a = NoResult
                 | Result a deriving (Show, Eq)
 
@@ -20,14 +20,14 @@ instance Monad MaybeOne where
   return x         = Result x
 
 
--- Example: partial function for division
+-- Partial function for division
 myDividedBy :: Double -> Double -> MaybeOne Double
 myDividedBy n d =
   if d  == 0
   then NoResult
   else Result (n / d)
 
--- Exercise 1-a
+-- Find the index of a number in a list
 myIndexOf :: [Double] -> Double -> MaybeOne Int
 myIndexOf l n = 
   if (myIndexOfAux l n == []) then NoResult
@@ -38,7 +38,7 @@ myIndexOfAux [] n = []
 myIndexOfAux (l:ls) n |(n == l)  = (l:ls)
                       |(n /= l)  = (myIndexOfAux ls n )
 
--- Exercise 1-b
+-- Find the remainder of a string after removing a prefix
 myRemainderString :: String -> String -> MaybeOne String
 myRemainderString x y = 
   if (isPrefix x y == False)  then  NoResult
@@ -87,7 +87,8 @@ g x y z s =
                   in n // d
 
 
--- Exercise 2
+-- Divide function for MaybeOne
+(//) :: Double -> Double -> MaybeOne Double
 v1 :: Double -> Double -> Double -> Double -> MaybeOne Double
 v1 x y z s = 
   case x // y of
@@ -137,7 +138,7 @@ gBetter x y z s =
     )
   )
 
--- Exercise 3
+-- Alternate divide function for MaybeOne
 v2 :: Double -> Double -> Double -> Double -> MaybeOne Double
 v2 x y z s = 
   (x // y) >>=
@@ -195,7 +196,7 @@ gPerfect x y z s = do
   result <- numerator // denominator
   return result
 
--- Exercise 4
+-- Alternate divide function for MaybeOne
 v3 :: Double -> Double -> Double -> Double -> MaybeOne Double
 v3 x y z s = do
   xDividedByy <- x // y

@@ -1,6 +1,6 @@
 module Practicum3 where
 
--- Exercises Arithmetical Expression
+-- Arithmetical Expression
 
 data IntExp  = Lit Int | Add IntExp IntExp | Mul IntExp IntExp
   deriving Show
@@ -16,7 +16,7 @@ evalintexp (Add a b)  = evalintexp a + evalintexp b
 evalintexp (Mul a b)  = evalintexp a * evalintexp b
 
 
--- Exercises Combinatory Logic
+-- Combinatory Logic
 data Term = S | K | I | App Term Term
 
 instance Show Term where
@@ -74,7 +74,7 @@ doall (App a b) | (hasredex (App a b) == True) =  if isredex (App a b)
 doall x = x 
 -}
 
--- Exercises Equational Specifications
+-- Equational Specifications
 data Thing = A | C | D  
   deriving (Show, Eq, Bounded, Enum)
 
